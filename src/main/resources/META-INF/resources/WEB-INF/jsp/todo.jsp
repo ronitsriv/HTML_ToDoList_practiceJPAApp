@@ -1,43 +1,30 @@
-<%@ taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="common/header.jspf" %>
+<%@ include file="common/navigation.jspf" %>
 
-<%--   C:\Users\rohit\.m2\repository\org\webjars\bootstrap\5.1.3\bootstrap-5.1.3.jar!  \META-INF\resources\webjars\bootstrap\5.1.3\css\bootstrap.min.css --%>
-<%--C:\Users\rohit\.m2\repository\org\webjars\bootstrap\5.1.3\bootstrap-5.1.3.jar!\META-INF\resources\webjars\bootstrap\5.1.3\js\bootstrap.min.js--%>
-<%--    C:\Users\rohit\.m2\repository\org\webjars\jquery\3.7.1\jquery-3.7.1.jar!\META-INF\resources\webjars\jquery\3.7.1\jquery.min.js--%>
+    <div class="container">
+        <h1>Enter todo details</h1>
+        <form:form method="post" modelAttribute="todo">
+            <fieldset class="mb-3">
+                <form:label path="description">Description</form:label>
+                <form:input type="text" path="description" required="required"/>
+                <form:errors type="text" path="description" cssClass="text-warning"/>
+            </fieldset>
+
+            <fieldset class="mb-3">
+                <form:label path="targetDate">Target Date</form:label>
+                <form:input type="text" path="targetDate" required="required"/>
+                <form:errors type="text" path="targetDate" cssClass="text-warning"/>
+            </fieldset>
 
 
-<html>
-    <head>
-        <link href = "webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel = "stylesheet">
-        <title>List Todos Page</title>
-    </head>
-    <body>
-        <div class="container">
-
-        <h1>Your todos are</h1>
-<%--        <div>Your Todos are ${todos}</div>--%>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>id</th>
-                <th>Description</th>
-                <th>Target Date</th>
-                <th>Is done?</th>
-            </tr>
-
-            </thead>
-            <tbody>
-                <c:forEach items="${todos}" var="todo">
-                    <tr>
-                        <td>${todo.id}</td>
-                        <td>${todo.description}</td>
-                        <td>${todo.targetDate}</td>
-                        <td>${todo.done}</td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
-            <a href="add-todo" class="btn btn-success">Add ToDo</a>
-        <script src = "webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
-        <script src = "webjars/jquery/3.7.1/jquery.min.js"></script>
-    </body>
-</html>
+            <form:input type="hidden" path="id"/>
+            <form:input type="hidden" path="done"/>
+            <input type="submit" class="btn btn-success"/>
+        </form:form>
+    </div>
+<%@ include file="common/footer.jspf" %>
+<script type="text/javascript">
+    $('#targetDate').datepicker({
+        format: 'yyyy-mm-dd'
+    });
+</script>

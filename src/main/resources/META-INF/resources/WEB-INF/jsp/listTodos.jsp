@@ -1,9 +1,30 @@
-<html>
-    <head>
-        <title>Login Page</title>
-    </head>
-        <div>Welcome to in28minutes</div>
-        <div>Your Name: ${name}</div>
-<%--        <div>Your Password: ${password}</div>--%>
-    </body>
-</html>
+<%@ include file="common/header.jspf" %>
+<%@ include file="common/navigation.jspf" %>
+
+<div class="container">
+
+<h1>Your todos are</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Description</th>
+        <th>Target Date</th>
+        <th>Is done?</th>
+    </tr>
+
+    </thead>
+    <tbody>
+        <c:forEach items="${todos}" var="todo">
+            <tr>
+                <td>${todo.description}</td>
+                <td>${todo.targetDate}</td>
+                <td>${todo.done}</td>
+                <td><a href="delete-todo?id=${todo.id}" class ="btn btn-warning">Delete</a></td>
+                <td><a href="update-todo?id=${todo.id}" class ="btn btn-success">Update</a></td>
+            </tr>
+        </c:forEach>
+    </tbody>
+</table>
+    <a href="add-todo" class="btn btn-success">Add ToDo</a>
+    <%@ include file="common/footer.jspf" %>

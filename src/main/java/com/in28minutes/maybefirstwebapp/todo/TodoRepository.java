@@ -1,12 +1,10 @@
-package com.in28minutes.maybefirstwebapp;
+package com.in28minutes.maybefirstwebapp.todo;
+
+import java.util.List;
 
 import com.in28minutes.maybefirstwebapp.todo.Todo;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-
-public interface TodoRepository extends JpaRepository<Todo, Integer> {
+public interface TodoRepository extends JpaRepository<Todo, Integer>{
         public List<Todo> findByUsername(String username);
-
-//        public void  save
 }
